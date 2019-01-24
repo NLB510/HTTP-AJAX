@@ -1,43 +1,28 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "reactstrap";
 
 const FriendForm = props => {
-  return (
-    <FormContainer>
-      <AddFriendForm>
+  return <FormContainer>
+      <AddFriendForm onSubmit={props.addFriend}>
         <TitleContainer>
           <h2>Add A User</h2>
         </TitleContainer>
         <FormItemsContainer>
           {/* <FormLabel>Name:</FormLabel> */}
-          <FormInput
-            type="text"
-            placeholder="Enter Name"
-            name="name"
-            value={props.friend.name}
-            onChange={props.handleChanges}
-          />
+          <FormInput type="text" placeholder="Enter Name" name="name" value={props.friend.name} onChange={props.handleChanges} />
           {/* <FormLabel>Age:</FormLabel> */}
-          <FormInput
-            type="text"
-            placeholder="Enter Age"
-            name="age"
-            value={props.friend.age}
-            onChange={props.handleChanges}
-          />
+          <FormInput type="text" placeholder="Enter Age" name="age" value={props.friend.age} onChange={props.handleChanges} />
           {/* <FormLabel>Email:</FormLabel> */}
-          <FormInput
-            type="text"
-            placeholder="Enter Email"
-            name="email"
-            value={props.friend.email}
-            onChange={props.handleChanges}
-          />
-          <FormButton>Add Friend</FormButton>
+          <FormInput type="text" placeholder="Enter Email" name="email" value={props.friend.email} onChange={props.handleChanges} />
+          <ButtonDiv>
+            <Button type="submit" color="primary" size="lg">Add Friend</Button>
+          </ButtonDiv>
+          {/* <FormButton type="submit">Add Friend</FormButton> */}
+          
         </FormItemsContainer>
       </AddFriendForm>
-    </FormContainer>
-  );
+    </FormContainer>;
 };
 
 /* 
@@ -82,14 +67,19 @@ const FormInput = styled.input`
   margin: 2% auto;
 `;
 
-const FormButton = styled.button`
-  width: 20%;
+// const FormButton = styled.button`
+//   width: 20%;
+//   margin: 2% auto;
+//   padding: 1%;
+//   background: #c0dfd9;
+//   ${"" /* color: white; */}
+//   border-radius: 5px;
+// `;
+
+const ButtonDiv = styled.div`
+  ${'' /* width: 100%; */}
   margin: 2% auto;
-  padding: 1%;
-  background: #c0dfd9;
-  ${"" /* color: white; */}
-  border-radius: 5px;
-`;
+`
 
 const FormLabel = styled.label`
   font-weight: bold;

@@ -9,6 +9,8 @@ import axios from "axios";
 
 import "./App.css";
 
+const baseUrl = "http://localhost:5000";
+
 class App extends Component {
   constructor() {
     super();
@@ -24,23 +26,40 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/friends")
+      .get(`${baseUrl}/friends`)
       .then(res => this.setState({ friendsData: res.data }))
       .catch(err => console.log(err));
   }
 
   handleChanges = e => {
     const { name, value } = e.target;
-
+    e.persist();
     this.setState(prevState => {
       return {
         friend: {
-          ...prevState.item,
+          ...prevState.friend,
           [name]: value
         }
       };
     });
   };
+
+
+  addFriend = e => {
+    e.preventDefault();
+
+    axios.post(`${baseUrl}/friends`, this.state.friend)
+    .then(res => {
+      this.setState({
+        friendsData: res.data
+      })
+      this.props.history.push('/')
+    })
+    .catch(err => console.log(err))
+  }
+
+
+
 
   render() {
     console.log(this.state.friend)
@@ -61,6 +80,7 @@ class App extends Component {
               {...props}
               friend={this.state.friend}
               handleChanges={this.handleChanges}
+              addFriend={this.addFriend}
             />
           )}
         />
