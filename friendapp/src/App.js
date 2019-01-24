@@ -20,7 +20,8 @@ class App extends Component {
         name: "",
         age: "",
         email: ""
-      }
+      },
+      
     };
   }
 
@@ -58,6 +59,24 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
+  deleteFriend = (e, friendId) => {
+    e.preventDefault();
+
+    axios.delete(`${baseUrl}/friends/${friendId}`)
+    .then(res => {
+      console.log(res)
+      this.setState({
+        friendsData: res.data
+      })
+    })
+    .catch(err => console.log(err))
+
+  }
+
+  updateFriend = e => {
+
+  }
+
 
 
 
@@ -70,7 +89,7 @@ class App extends Component {
           exact
           path="/"
           render={props => (
-            <FriendsList {...props} friendsData={this.state.friendsData} />
+            <FriendsList {...props} friendsData={this.state.friendsData} deleteFriend={this.deleteFriend} />
           )}
         />
         <Route

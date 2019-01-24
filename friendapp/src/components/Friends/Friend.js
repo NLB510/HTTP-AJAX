@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "reactstrap";
 
 const Friend = props => {
-  const { name, age, email } = props.friend;
+  const { name, age, email, id } = props.friend;
 
   return (
     <FriendContainer>
@@ -13,6 +14,10 @@ const Friend = props => {
       <p>
         <strong>Email:</strong> {email}
       </p>
+      <ButtonDiv>
+        <Button color="secondary">Edit</Button>
+      <Button color="danger" onClick={(e) => props.deleteFriend(e, id)} >Delete</Button>
+      </ButtonDiv>
     </FriendContainer>
   );
 };
@@ -31,5 +36,11 @@ const FriendContainer = styled.div`
   box-shadow: 2px 5px 15px -7px rgba(0, 0, 0, 0.49);
   text-align: center;
 `;
+
+const ButtonDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+`
 
 export default Friend;

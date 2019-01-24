@@ -6,7 +6,7 @@ import Friend from "./Friend"
 
 const FriendsList = props => {
   const friend = props.friendsData.map(friend => {
-    return <Friend key={friend.id} friend={friend} />
+    return <Friend key={friend.id} friend={friend} deleteFriend={props.deleteFriend} />
   })
 
   return (
