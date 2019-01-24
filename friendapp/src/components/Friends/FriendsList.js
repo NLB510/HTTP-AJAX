@@ -16,10 +16,10 @@ const FriendsList = props => {
   });
 
   return (
-    <div>
+    <FriendMainContainer>
       <FriendListTitle>Friends List</FriendListTitle>
       <FriendListContainer>{friend}</FriendListContainer>
-    </div>
+    </FriendMainContainer>
   );
 };
 
@@ -27,11 +27,16 @@ const FriendsList = props => {
 ==== FriendList Component Styles =====
 */
 
+const FriendMainContainer = styled.div`
+  width: 80%;
+  margin: 0 auto;
+`
+
 const FriendListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-
-  width: 60%;
+  justify-content: space-evenly;
+  width: 100%;
   margin: 0 auto;
 `;
 
@@ -39,5 +44,8 @@ const FriendListTitle = styled.h2`
   text-align: center;
   text-decoration: underline;
 `;
+
+
+
 
 export default FriendsList;

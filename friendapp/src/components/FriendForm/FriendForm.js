@@ -7,7 +7,7 @@ const FriendForm = props => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.isUpdating ? props.updateFriend() : props.addItem()
+    props.isUpdating ? props.updateFriend() : props.addFriend()
 
   }
 
@@ -18,11 +18,11 @@ const FriendForm = props => {
         </TitleContainer>
         <FormItemsContainer>
           {/* <FormLabel>Name:</FormLabel> */}
-          <FormInput type="text" placeholder="Enter Name" name="name" value={props.friend.name} onChange={props.handleChanges} />
+          <FormInput type="text" placeholder="Enter Name" name="name" value={props.friend.name} onChange={props.handleChanges} required />
           {/* <FormLabel>Age:</FormLabel> */}
-          <FormInput type="number" placeholder="Enter Age" name="age" value={props.friend.age} onChange={props.handleChanges} />
+          <FormInput type="number" placeholder="Enter Age" name="age" value={props.friend.age} onChange={props.handleChanges} required />
           {/* <FormLabel>Email:</FormLabel> */}
-          <FormInput type="text" placeholder="Enter Email" name="email" value={props.friend.email} onChange={props.handleChanges} />
+          <FormInput type="text" placeholder="Enter Email" name="email" value={props.friend.email} onChange={props.handleChanges} required />
           <ButtonDiv>
             <Button type="submit" color="primary" size="lg">{props.isUpdating ? 'Update' : 'Add'}</Button>
             {props.isUpdating ? <Button color="secondary" size="lg" onClick={e => props.cancelUpdate(e)} >Cancel</Button> : null}

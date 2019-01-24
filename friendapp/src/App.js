@@ -50,7 +50,7 @@ class App extends Component {
 
 
   addFriend = e => {
-    e.preventDefault();
+    const {name, age, email} = this.state.friend
 
     axios.post(`${baseUrl}/friends`, this.state.friend)
     .then(res => {
