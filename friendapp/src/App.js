@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 
 import FriendsList from "./components/Friends/FriendsList";
-import FriendForm from "./components/FriendForm/FriendForm"
+import FriendForm from "./components/FriendForm/FriendForm";
+import NavBar from "./components/NavBar/NavBar";
 
 import axios from "axios";
 
@@ -26,8 +27,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route exact path="/" render={props => <FriendsList {...props} friendsData={this.state.friendsData} /> } />
-        <Route path="/form" render={props => <FriendForm {...props} /> } />
+        <NavBar />
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <FriendsList {...props} friendsData={this.state.friendsData} />
+          )}
+        />
+        <Route
+          path="/friend-form"
+          render={props => <FriendForm {...props} />}
+        />
       </div>
     );
   }

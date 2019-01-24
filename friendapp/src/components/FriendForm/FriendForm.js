@@ -30,7 +30,7 @@ const FriendForm = props => {
 const FormContainer = styled.div`
   width: 60%;
   margin: 5% auto;
-  border-radius: 15px;
+  
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.21);
   ${"" /* border: 1px solid lightgrey; */}
 `;
@@ -42,7 +42,8 @@ const TitleContainer = styled.div`
   ${"" /* margin-top: -20px; */}
 
   padding-top: 1%;
-
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
   text-align: center;
 `;
 
@@ -68,6 +69,9 @@ const FormButton = styled.button`
   width: 20%;
   margin: 2% auto;
   padding: 1%;
+  background: #c0dfd9;
+  ${'' /* color: white; */}
+  border-radius: 5px;
 `;
 
 const FormLabel = styled.label`
