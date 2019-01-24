@@ -11,17 +11,20 @@ import "./App.css";
 
 const baseUrl = "http://localhost:5000";
 
+const emptyFriend = {
+  name: "",
+  age: "",
+  email: ""
+}
+
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
       friendsData: [],
-      friend: {
-        name: "",
-        age: "",
-        email: ""
-      },
-      
+      friend: emptyFriend,
+      isUpdating: false
     };
   }
 
@@ -73,7 +76,38 @@ class App extends Component {
 
   }
 
+  populateForm = (e, id) => {
+    e.preventDefault();
+    this.setState({
+      friend: this.state.friendsData.find(friend => friend.id === id),
+      isUpdating: true
+    })
+    this.props.history.push('/friend-form');
+  }
+
   updateFriend = e => {
+    axios.put(`${baseUrl}/friends/${this.state.friend.id}`, this.state.friend)
+    .then(res => {
+      console.log(res)
+      this.setState({
+        friendsData: res.data,
+        isUpdating: false, 
+        friend: emptyFriend
+      })
+      this.props.history.push('/')
+    })
+    .catch(err => console.log(err))
+  }
+
+  cancelUpdate = e => {
+    e.preventDefault();
+
+    this.setState({
+      friend: emptyFriend,
+      isUpdating: false,
+    })
+
+    this.props.history.push('/')
 
   }
 
@@ -89,7 +123,7 @@ class App extends Component {
           exact
           path="/"
           render={props => (
-            <FriendsList {...props} friendsData={this.state.friendsData} deleteFriend={this.deleteFriend} />
+            <FriendsList {...props} friendsData={this.state.friendsData} deleteFriend={this.deleteFriend} populateForm={this.populateForm} />
           )}
         />
         <Route
@@ -100,6 +134,9 @@ class App extends Component {
               friend={this.state.friend}
               handleChanges={this.handleChanges}
               addFriend={this.addFriend}
+              updateFriend={this.updateFriend}
+              isUpdating={this.state.isUpdating}
+              cancelUpdate={this.cancelUpdate}
             />
           )}
         />

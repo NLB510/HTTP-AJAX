@@ -15,7 +15,7 @@ const Friend = props => {
         <strong>Email:</strong> {email}
       </p>
       <ButtonDiv>
-        <Button color="secondary">Edit</Button>
+        <Button color="secondary" onClick={(e) => props.populateForm(e, id)} >Edit</Button>
       <Button color="danger" onClick={(e) => props.deleteFriend(e, id)} >Delete</Button>
       </ButtonDiv>
     </FriendContainer>

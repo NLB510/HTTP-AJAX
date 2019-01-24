@@ -3,20 +3,29 @@ import styled from "styled-components";
 import { Button } from "reactstrap";
 
 const FriendForm = props => {
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    props.isUpdating ? props.updateFriend() : props.addItem()
+
+  }
+
   return <FormContainer>
-      <AddFriendForm onSubmit={props.addFriend}>
+      <AddFriendForm onSubmit={handleSubmit}>
         <TitleContainer>
-          <h2>Add A User</h2>
+          <h2>{props.isUpdating ? 'Update Friend' : 'Add A Friend'}</h2>
         </TitleContainer>
         <FormItemsContainer>
           {/* <FormLabel>Name:</FormLabel> */}
           <FormInput type="text" placeholder="Enter Name" name="name" value={props.friend.name} onChange={props.handleChanges} />
           {/* <FormLabel>Age:</FormLabel> */}
-          <FormInput type="text" placeholder="Enter Age" name="age" value={props.friend.age} onChange={props.handleChanges} />
+          <FormInput type="number" placeholder="Enter Age" name="age" value={props.friend.age} onChange={props.handleChanges} />
           {/* <FormLabel>Email:</FormLabel> */}
           <FormInput type="text" placeholder="Enter Email" name="email" value={props.friend.email} onChange={props.handleChanges} />
           <ButtonDiv>
-            <Button type="submit" color="primary" size="lg">Add Friend</Button>
+            <Button type="submit" color="primary" size="lg">{props.isUpdating ? 'Update' : 'Add'}</Button>
+            {props.isUpdating ? <Button color="secondary" size="lg" onClick={e => props.cancelUpdate(e)} >Cancel</Button> : null}
           </ButtonDiv>
           {/* <FormButton type="submit">Add Friend</FormButton> */}
           
@@ -77,8 +86,10 @@ const FormInput = styled.input`
 // `;
 
 const ButtonDiv = styled.div`
-  ${'' /* width: 100%; */}
+  width: 100%;
   margin: 2% auto;
+  display: flex;
+  justify-content: space-evenly;
 `
 
 const FormLabel = styled.label`
