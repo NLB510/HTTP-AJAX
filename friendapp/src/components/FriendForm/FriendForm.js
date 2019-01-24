@@ -10,14 +10,31 @@ const FriendForm = props => {
         </TitleContainer>
         <FormItemsContainer>
           {/* <FormLabel>Name:</FormLabel> */}
-          <FormInput type="text" placeholder="Enter Name" />
+          <FormInput
+            type="text"
+            placeholder="Enter Name"
+            name="name"
+            value={props.friend.name}
+            onChange={props.handleChanges}
+          />
           {/* <FormLabel>Age:</FormLabel> */}
-          <FormInput type="text" placeholder="Enter Age" />
+          <FormInput
+            type="text"
+            placeholder="Enter Age"
+            name="age"
+            value={props.friend.age}
+            onChange={props.handleChanges}
+          />
           {/* <FormLabel>Email:</FormLabel> */}
-          <FormInput type="text" placeholder="Enter Email" />
+          <FormInput
+            type="text"
+            placeholder="Enter Email"
+            name="email"
+            value={props.friend.email}
+            onChange={props.handleChanges}
+          />
           <FormButton>Add Friend</FormButton>
         </FormItemsContainer>
-        
       </AddFriendForm>
     </FormContainer>
   );
@@ -30,7 +47,7 @@ const FriendForm = props => {
 const FormContainer = styled.div`
   width: 60%;
   margin: 5% auto;
-  
+
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.21);
   ${"" /* border: 1px solid lightgrey; */}
 `;
@@ -51,7 +68,7 @@ const AddFriendForm = styled.form`
   display: flex;
   flex-direction: column;
   ${"" /* justify-content: center; */}
-  
+
   ${"" /* margin: 2% auto; */}
 `;
 
@@ -70,7 +87,7 @@ const FormButton = styled.button`
   margin: 2% auto;
   padding: 1%;
   background: #c0dfd9;
-  ${'' /* color: white; */}
+  ${"" /* color: white; */}
   border-radius: 5px;
 `;
 
@@ -79,13 +96,11 @@ const FormLabel = styled.label`
   margin-left: %;
 `;
 
-
 const FormItemsContainer = styled.div`
   background-color: #fdfdfd;
   width: 100%;
   display: flex;
   flex-direction: column;
-  
 `;
 
 export default FriendForm;

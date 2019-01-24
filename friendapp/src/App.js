@@ -13,7 +13,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friendsData: []
+      friendsData: [],
+      friend: {
+        name: "",
+        age: "",
+        email: ""
+      }
     };
   }
 
@@ -24,7 +29,21 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  handleChanges = e => {
+    const { name, value } = e.target;
+
+    this.setState(prevState => {
+      return {
+        friend: {
+          ...prevState.item,
+          [name]: value
+        }
+      };
+    });
+  };
+
   render() {
+    console.log(this.state.friend)
     return (
       <div className="App">
         <NavBar />
@@ -37,7 +56,13 @@ class App extends Component {
         />
         <Route
           path="/friend-form"
-          render={props => <FriendForm {...props} />}
+          render={props => (
+            <FriendForm
+              {...props}
+              friend={this.state.friend}
+              handleChanges={this.handleChanges}
+            />
+          )}
         />
       </div>
     );
