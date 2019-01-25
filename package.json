@@ -11,7 +11,12 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon server.js"
+    "client-install": "npm install --prefix friendapp",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix friendapp",
+    "dev": "concurrently \"npm run server\" \"npm run friendapp\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix friendapp && npm run build --prefix friendapp"
   },
   "author": "Lambda School",
   "license": "ISC"
