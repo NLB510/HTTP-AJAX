@@ -30,7 +30,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get(`${baseUrl}/friends`)
+      .get(`/friends`)
       .then(res => this.setState({ friendsData: res.data }))
       .catch(err => console.log(err));
   }
@@ -52,7 +52,7 @@ class App extends Component {
   addFriend = e => {
     const {name, age, email} = this.state.friend
 
-    axios.post(`${baseUrl}/friends`, this.state.friend)
+    axios.post(`/friends`, this.state.friend)
     .then(res => {
       this.setState({
         friendsData: res.data
@@ -65,7 +65,7 @@ class App extends Component {
   deleteFriend = (e, friendId) => {
     e.preventDefault();
 
-    axios.delete(`${baseUrl}/friends/${friendId}`)
+    axios.delete(`/friends/${friendId}`)
     .then(res => {
       console.log(res)
       this.setState({
@@ -86,7 +86,7 @@ class App extends Component {
   }
 
   updateFriend = e => {
-    axios.put(`${baseUrl}/friends/${this.state.friend.id}`, this.state.friend)
+    axios.put(`/friends/${this.state.friend.id}`, this.state.friend)
     .then(res => {
       console.log(res)
       this.setState({

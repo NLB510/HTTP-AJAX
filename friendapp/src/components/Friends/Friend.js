@@ -15,8 +15,20 @@ const Friend = props => {
         <strong>Email:</strong> {email}
       </p>
       <ButtonDiv>
-        <Button color="secondary" onClick={(e) => props.populateForm(e, id)} >Edit</Button>
-      <Button color="danger" onClick={(e) => props.deleteFriend(e, id)} >Delete</Button>
+        <Button
+          color="secondary"
+          size="lg"
+          onClick={e => props.populateForm(e, id)}
+        >
+          Edit
+        </Button>
+        <Button
+          color="danger"
+          size="lg"
+          onClick={e => props.deleteFriend(e, id)}
+        >
+          Delete
+        </Button>
       </ButtonDiv>
     </FriendContainer>
   );
@@ -41,6 +53,6 @@ const ButtonDiv = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-`
+`;
 
 export default Friend;

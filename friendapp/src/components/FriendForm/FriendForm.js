@@ -47,11 +47,11 @@ const FormContainer = styled.div`
 `;
 
 const TitleContainer = styled.div`
-  background-color: #c0dfd9;
+  background-color: #457afb;
   width: 100%;
   height: 100%;
   ${"" /* margin-top: -20px; */}
-
+  color: white;
   padding-top: 1%;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
